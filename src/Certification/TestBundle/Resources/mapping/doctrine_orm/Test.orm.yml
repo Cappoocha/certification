@@ -1,0 +1,19 @@
+Certification\Module\Test\Entity\Test:
+    type: entity
+    repositoryClass: Certification\Module\Repository\DoctrineOrm\TestRepository
+    table: test
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        title:
+            type: string
+            length: 100
+        calculation:
+            type: integer
+        time:
+            type: string
+            length: 100

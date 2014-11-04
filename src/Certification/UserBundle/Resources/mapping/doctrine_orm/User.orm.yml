@@ -1,0 +1,27 @@
+Certification\Module\User\Entity\User:
+    type: entity
+    repositoryClass: Certification\Module\Repository\DoctrineOrm\UserRepository
+    table: user
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        username:
+            type: string
+            length: 50
+            unique: true
+        email:
+            type: string
+            length: 50
+            unique: true
+        password:
+            type: string
+            length: 100
+            nullable: true
+        token:
+            type: string
+            length: 255
+            nullable: true
