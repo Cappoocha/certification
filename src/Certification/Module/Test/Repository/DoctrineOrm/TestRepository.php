@@ -5,11 +5,11 @@
  * Time: 17:50
  */
 
-namespace Module\Test\Repository\DoctrineOrm;
+namespace Certification\Module\Test\Repository\DoctrineOrm;
 
 
 use Doctrine\ORM\EntityRepository;
-use Module\Test\Repository\TestRepositoryInterface;
+use Certification\Module\Test\Repository\TestRepositoryInterface;
 
 /**
  * Класс для работы с тестами

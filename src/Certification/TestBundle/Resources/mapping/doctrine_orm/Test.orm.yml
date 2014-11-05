@@ -1,6 +1,6 @@
 Certification\Module\Test\Entity\Test:
     type: entity
-    repositoryClass: Certification\Module\Repository\DoctrineOrm\TestRepository
+    repositoryClass: Certification\Module\Test\Repository\DoctrineOrm\TestRepository
     table: test
 
     id:
