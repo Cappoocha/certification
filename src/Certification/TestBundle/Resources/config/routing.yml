@@ -1,0 +1,6 @@
+certification_tests:
+    path: /certification/tests
+    defaults:
+        _controller: TestBundle:Test:list
+    requirements:
+        methods:  GET
