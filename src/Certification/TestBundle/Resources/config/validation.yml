@@ -1,0 +1,12 @@
+Certification\Module\Test\Entity\Test:
+    properties:
+        title:
+            - NotBlank: ~
+            - Length:
+                max: 100
+        time:
+            - NotBlank: ~
+            - Type: integer
+        calculation:
+            - NotBlank: ~
+            - Type: integer

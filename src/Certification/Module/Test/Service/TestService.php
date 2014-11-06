@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bev
- * Date: 05.11.14
- * Time: 7:51
- */
 
 namespace Certification\Module\Test\Service;
 
@@ -42,5 +36,14 @@ class TestService
         return $this->testRepository->findAll();
     }
 
-
+    /**
+     * Добавляет новый тест
+     *
+     * @param $testData
+     */
+    public function createTest($testData)
+    {
+        $test = new Test($testData);
+        $this->testRepository->save($test);
+    }
 } 

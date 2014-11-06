@@ -7,6 +7,7 @@
 
 namespace Certification\Module\Test\Repository;
 
+use Certification\Module\Doctrine\Repository\RepositoryInterface;
 use Certification\Module\Test\Entity\Test;
 
 /**
@@ -17,7 +18,7 @@ use Certification\Module\Test\Entity\Test;
  *
  * @method Test findAll()
  */
-interface TestRepositoryInterface
+interface TestRepositoryInterface extends RepositoryInterface
 {
 
 }

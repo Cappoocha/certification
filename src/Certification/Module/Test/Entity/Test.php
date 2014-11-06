@@ -8,13 +8,10 @@
 namespace Certification\Module\Test\Entity;
 
 
-class Test
-{
-	/**
-	 * @var string
-	 */
-	private $id;
+use Certification\Module\Doctrine\Entity\Entity;
 
+class Test extends Entity
+{
 	/**
 	 * Название теста
 	 *
@@ -36,26 +33,14 @@ class Test
 	 */
 	private $time;
 
-	/**
-	 * @param $title
-	 * @param $calculation
-	 * @param $time
-	 */
-	public function __construct($title, $calculation, $time)
+    /**
+     * @param $testData
+     */
+    public function __construct($testData)
 	{
-		$this->title = $title;
-		$this->calculation = $calculation;
-		$this->time = $time;
-	}
-
-	/**
-	 * Возвращает id теста
-	 *
-	 * @return string
-	 */
-	public function getId()
-	{
-		return $this->id;
+		$this->title = $testData["title"];
+		$this->calculation = $testData["calculation"];
+		$this->time = $testData["time"];
 	}
 
 	/**

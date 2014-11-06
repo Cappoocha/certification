@@ -3,8 +3,46 @@
 {% block title %}Tests{% endblock %}
 
 {% block body %}
+
     Tests
 
+    <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1"></div>
+        <div class="col-xs-10 col-sm-10 col-md-10">
+            <form action="{{ url('certification_test_add')}}" method="post" class="form-inline" novalidate="novalidate">
+                {{ form_errors(form) }}
+                <div class="form-group">
+                    <label for="title" class="sr-only">Title</label>
+                    {{ form_errors(form.title) }}
+                    {{ form_widget(form.title, { 'attr': {'class': 'form-control', 'placeholder' : 'Title'} }) }}
+                    {#<input type="text" required ng-maxlength="150" class="form-control" id="title" name="title" placeholder="Title" />#}
+                </div>
+
+                <div class="form-group">
+                    <label for="time" class="sr-only">Time</label>
+                    {{ form_errors(form.time) }}
+                    {{ form_widget(form.time, { 'attr': {'class': 'form-control', 'placeholder' : 'Time'} }) }}
+                    {#<input type="text" required ng-maxlength="150" class="form-control" id="time" name="time" placeholder="Time" />#}
+                </div>
+
+                <div class="form-group">
+                    <label for="calculation" class="sr-only">Calculation</label>
+                    {{ form_errors(form.calculation) }}
+                    {{ form_widget(form.calculation, { 'attr': {'class': 'form-control', 'placeholder' : 'Calculation'} }) }}
+                    {#<input type="text" required ng-maxlength="150" class="form-control" id="calculation" name="calculation" placeholder="calculation" />#}
+                </div>
+
+                <button type="submit" class="btn btn-default">Add test</button>
+
+                {{ form_end(form) }}
+
+            </form>
+
+        </div>
+    </div>
+
+    <p></p>
+    
     <div class="row">
         <div class="col-xs-1 col-sm-1 col-md-1"></div>
         <div class="col-xs-10 col-sm-10 col-md-10">
@@ -15,13 +53,31 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Time</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                         {% for test in tests %}
-                            {{ test.id }}
-                            {{ test.title }}
-                            {{ test.time }}
+                            <tr>
+                                <td>{{ test.id }}</td>
+                                <td>{{ test.title }}</td>
+                                <td>{{ test.time }}</td>
+                                <td colspan="2">
+
+                                    <a href="">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                    </a>
+
+                                    <a href="">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </a>
+
+                                </td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
@@ -31,4 +87,5 @@
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1"></div>
     </div>
+
 {% endblock %}

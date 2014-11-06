@@ -4,3 +4,10 @@ certification_tests:
         _controller: TestBundle:Test:list
     requirements:
         methods:  GET
+
+certification_test_add:
+    path: /certification/test/add
+    defaults:
+        _controller: TestBundle:Test:add
+    requirements:
+        methods: POST

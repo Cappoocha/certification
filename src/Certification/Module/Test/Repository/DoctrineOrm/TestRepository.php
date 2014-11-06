@@ -8,7 +8,7 @@
 namespace Certification\Module\Test\Repository\DoctrineOrm;
 
 
-use Doctrine\ORM\EntityRepository;
+use Certification\Module\Doctrine\Repository\DoctrineORM\DoctrineOrmRepository;
 use Certification\Module\Test\Repository\TestRepositoryInterface;
 
 /**
@@ -17,7 +17,6 @@ use Certification\Module\Test\Repository\TestRepositoryInterface;
  * Class TestRepository
  * @package Module\Test\Repository\DoctrineOrm
  */
-class TestRepository extends EntityRepository implements TestRepositoryInterface
+class TestRepository extends DoctrineOrmRepository implements TestRepositoryInterface
 {
-
 } 
