@@ -1,13 +1,20 @@
 certification_tests:
-    path: /certification/tests
+    path: /tests
     defaults:
         _controller: TestBundle:Test:list
     requirements:
         methods:  GET
 
 certification_test_add:
-    path: /certification/test/add
+    path: /test/add
     defaults:
         _controller: TestBundle:Test:add
     requirements:
         methods: POST
+
+certification_test_delete:
+    path: /test/{testId}
+    defaults:
+        _controller: TestBundle:Test:delete
+    requirements:
+        methods: DELETE

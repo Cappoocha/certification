@@ -17,6 +17,7 @@ use Certification\Module\Test\Entity\Test;
  * @package Module\Test\Repository
  *
  * @method Test findAll()
+ * @method Test findById($id)
  */
 interface TestRepositoryInterface extends RepositoryInterface
 {

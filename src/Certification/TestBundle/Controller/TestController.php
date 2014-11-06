@@ -63,6 +63,20 @@ class TestController extends Controller
     }
 
     /**
+     * Удаляет тест
+     *
+     * @param $testId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteAction($testId)
+    {
+        $testService = $this->getTestService();
+        $testService->deleteTest($testId);
+
+        return $this->redirect($this->generateUrl('certification_tests'));
+    }
+
+    /**
      * Возвращает сервис для работы с тестами
      *
      * @return TestService
