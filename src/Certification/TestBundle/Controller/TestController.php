@@ -3,7 +3,9 @@
 namespace Certification\TestBundle\Controller;
 
 
+use Certification\Module\Test\Entity\Test;
 use Certification\Module\Test\Service\TestService;
+use Certification\TestBundle\Form\Type\TestType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,11 +23,13 @@ class TestController extends Controller
         $testService = $this->getTestService();
         $tests = $testService->getAllTests();
 
-        $form = $this->createFormBuilder()
-            ->add('title', 'text')
-            ->add('time', 'integer')
-            ->add('calculation', 'integer')
-            ->getForm();
+//        $form = $this->createFormBuilder()
+//            ->add('title', 'text')
+//            ->add('time', 'integer')
+//            ->add('calculation', 'integer')
+//            ->getForm();
+
+        $form = $this->get('form.factory')->create(new TestType());
 
         return $this->render(
             "TestBundle:Test:list.html.twig",
@@ -65,21 +69,31 @@ class TestController extends Controller
      */
     public function addAction(Request $request)
     {
-        $form = $this->createFormBuilder()
-            ->add('title', 'text')
-            ->add('time', 'integer')
-            ->add('calculation', 'integer')
-            ->getForm();
+//        $form = $this->createFormBuilder()
+//            ->add('title', 'text')
+//            ->add('time', 'integer')
+//            ->add('calculation', 'integer')
+//            ->getForm();
+        $test = new Test();
+        $form = $this->get('form.factory')->create(new TestType(), $test);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $testData = $form->getData();
             $testService = $this->getTestService();
-            $testService->createTest($testData);
+            $testService->createTest($test, $testData);
+
+            return $this->redirect($this->generateUrl('certification_tests'));
         }
 
-        return $this->redirect($this->generateUrl('certification_tests'));
+        return $this->render(
+            "TestBundle:Test:list.html.twig",
+            array(
+                "form" => $form->createView(),
+                "tests" => null
+            )
+        );
     }
 
     /**

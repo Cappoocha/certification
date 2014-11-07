@@ -14,6 +14,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 class TestType extends AbstractType
 {
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -22,6 +26,20 @@ class TestType extends AbstractType
             ->add('calculation', 'integer');
     }
 
+    /**
+     * @param array $options
+     * @return array
+     */
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'Certification\Module\Test\Entity\Test'
+        );
+    }
+
+    /**
+     * @return string
+     */
     public function getName()
     {
         return "certification_test";

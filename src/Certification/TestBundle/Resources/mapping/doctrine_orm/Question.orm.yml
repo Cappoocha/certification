@@ -14,9 +14,15 @@ Certification\Module\Test\Entity\Question:
             length: 100
         score:
             type: integer
+        testId:
+            type: integer
+            nullable: true
 
     ManyToOne:
         test:
             targetEntity: Certification\Module\Test\Entity\Test
-            inversedBy: question
+            inversedBy: questions
             cascade: [ all ]
+            joinColumn:
+                name: testId
+                referencedColumnName: id

@@ -8,7 +8,13 @@
     {{ test.time }}
     {{ test.calculation }}
 
-    <a href="">
+    {% if test.questions %}
+
+    {% else %}
+        No question
+    {% endif %}
+
+    <a href="{{ url('certification_question_add', {'testId' : test.id}) }}">
         <button type="submit" class="btn btn-primary btn-sm">
             <span class="glyphicon glyphicon-plus"></span>
         </button>

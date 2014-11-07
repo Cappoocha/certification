@@ -9,6 +9,7 @@ namespace Certification\Module\Test\Entity;
 
 
 use Certification\Module\Doctrine\Entity\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class Test extends Entity
@@ -39,16 +40,11 @@ class Test extends Entity
      *
      * @var Collection
      */
-    private $question;
+    protected $questions;
 
-    /**
-     * @param $testData
-     */
-    public function __construct($testData)
+    public function __construct()
 	{
-		$this->title = $testData["title"];
-		$this->calculation = $testData["calculation"];
-		$this->time = $testData["time"];
+        $this->questions = new ArrayCollection();
 	}
 
 	/**
@@ -61,6 +57,16 @@ class Test extends Entity
 		return $this->title;
 	}
 
+    /**
+     * Устанавливает название теста
+     *
+     * @param $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
 	/**
 	 * Возвращает способ расчета теста
 	 *
@@ -70,6 +76,16 @@ class Test extends Entity
 	{
 		return $this->calculation;
 	}
+
+    /**
+     * Устанавливает способ расчета
+     *
+     * @param $calculation
+     */
+    public function setCalculation($calculation)
+    {
+        $this->calculation = $calculation;
+    }
 
 	/**
 	 * Возвращает время, данное на выполнение теста
@@ -82,24 +98,34 @@ class Test extends Entity
 	}
 
     /**
+     * Устанавливает время
+     *
+     * @param $time
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+    }
+
+    /**
      * Возвращает вопросы для теста
      *
      * @return Collection
      */
-    public function getQuestion()
+    public function getQuestions()
     {
-        return $this->question;
+        return $this->questions;
     }
 
     /**
-     * Добавляет вопрос
+     * Добавляет вопрос в коллекцию
      *
      * @param Question $question
-     * @return $this
+     * @return Test
      */
     public function addQuestion(Question $question)
     {
-        $this->question[] = $question;
+        $this->questions[] = $question;
 
         return $this;
     }

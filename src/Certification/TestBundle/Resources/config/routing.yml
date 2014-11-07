@@ -25,3 +25,10 @@ certification_test_delete:
         _controller: TestBundle:Test:delete
     requirements:
         methods: DELETE
+
+certification_question_add:
+    path: /{testId}/question/add
+    defaults:
+        _controller: TestBundle:Question:add
+    requirements:
+        method: POST

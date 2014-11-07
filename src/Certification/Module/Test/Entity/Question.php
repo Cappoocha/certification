@@ -4,7 +4,6 @@ namespace Certification\Module\Test\Entity;
 
 
 use Certification\Module\Doctrine\Entity\Entity;
-use Certification\Module\Test\Entity\Test;
 
 /**
  * Вопросы к тесту
@@ -26,7 +25,14 @@ class Question extends Entity
      *
      * @var Test
      */
-    private $test;
+    protected $test;
+
+    /**
+     * Id теста
+     *
+     * @var integer
+     */
+    private $testId;
 
     /**
      * Балл за правильный ответ на этот вопрос
@@ -83,5 +89,34 @@ class Question extends Entity
     public function getTest()
     {
         return $this->test;
+    }
+
+    /**
+     * Привязывает тест
+     *
+     * @param Test $test
+     * @return Question
+     */
+    public function setTest(Test $test)
+    {
+        $this->test = $test;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTestId()
+    {
+        return $this->testId;
+    }
+
+    /**
+     * @param $testId
+     */
+    public function setTestId($testId)
+    {
+        $this->testId = $testId;
     }
 } 
