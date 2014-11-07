@@ -38,6 +38,23 @@ class TestService
     }
 
     /**
+     * Находит тест по id
+     *
+     * @param $testId
+     * @return Test
+     * @throws \Doctrine\ORM\EntityNotFoundException
+     */
+    public function getTestById($testId)
+    {
+        $test = $this->testRepository->findById($testId);
+        if (empty ($test)) {
+            throw new EntityNotFoundException('Test not found');
+        }
+
+        return $test;
+    }
+
+    /**
      * Добавляет новый тест
      *
      * @param $testData

@@ -38,6 +38,26 @@ class TestController extends Controller
     }
 
     /**
+     * Просмотр теста
+     *
+     * @param $testId
+     * @return Response
+     */
+    public function viewAction($testId)
+    {
+        $testService = $this->getTestService();
+        $test = $testService->getTestById($testId);
+
+        return $this->render(
+            "TestBundle:Test:view.html.twig",
+            array(
+                "test" => $test
+            ),
+            Response::create('', Response::HTTP_OK)
+        );
+    }
+
+    /**
      * Создает тест
      *
      * @param Request $request

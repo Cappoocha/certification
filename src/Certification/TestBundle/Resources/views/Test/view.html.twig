@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Tests{% endblock %}
+
+{% block body %}
+
+    {{ test.title }}
+    {{ test.time }}
+    {{ test.calculation }}
+
+    <a href="">
+        <button type="submit" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+    </a>
+
+{% endblock %}

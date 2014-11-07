@@ -60,7 +60,11 @@
                         {% for test in tests %}
                             <tr>
                                 <td>{{ test.id }}</td>
-                                <td>{{ test.title }}</td>
+                                <td>
+                                    <a href="{{ path('certification_test_view', {'testId': test.id}) }}">
+                                        {{ test.title }}
+                                    </a>
+                                </td>
                                 <td>{{ test.time }}</td>
                                 <td colspan="2">
 
