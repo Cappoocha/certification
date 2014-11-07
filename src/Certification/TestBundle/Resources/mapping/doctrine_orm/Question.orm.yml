@@ -1,0 +1,22 @@
+Certification\Module\Test\Entity\Question:
+    type: entity
+    repositoryClass: Certification\Module\Test\Repository\DoctrineOrm\QuestionRepository
+    table: question
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        title:
+            type: string
+            length: 100
+        score:
+            type: integer
+
+    ManyToOne:
+        test:
+            targetEntity: Certification\Module\Test\Entity\Test
+            inversedBy: question
+            cascade: [ all ]
