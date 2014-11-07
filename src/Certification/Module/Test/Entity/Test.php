@@ -9,6 +9,7 @@ namespace Certification\Module\Test\Entity;
 
 
 use Certification\Module\Doctrine\Entity\Entity;
+use Doctrine\Common\Collections\Collection;
 
 class Test extends Entity
 {
@@ -32,6 +33,13 @@ class Test extends Entity
 	 * @var string
 	 */
 	private $time;
+
+    /**
+     * Вопросы для теста
+     *
+     * @var Collection
+     */
+    private $question;
 
     /**
      * @param $testData
@@ -72,4 +80,27 @@ class Test extends Entity
 	{
 		return $this->time;
 	}
+
+    /**
+     * Возвращает вопросы для теста
+     *
+     * @return Collection
+     */
+    public function getQuestion()
+    {
+        return $this->question;
+    }
+
+    /**
+     * Добавляет вопрос
+     *
+     * @param Question $question
+     * @return $this
+     */
+    public function addQuestion(Question $question)
+    {
+        $this->question[] = $question;
+
+        return $this;
+    }
 } 
