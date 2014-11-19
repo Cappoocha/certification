@@ -103,20 +103,4 @@ class Question extends Entity
 
         return $this;
     }
-
-    /**
-     * @return int
-     */
-    public function getTestId()
-    {
-        return $this->testId;
-    }
-
-    /**
-     * @param $testId
-     */
-    public function setTestId($testId)
-    {
-        $this->testId = $testId;
-    }
 } 
