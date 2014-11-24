@@ -54,21 +54,6 @@ class TestService
         return $test;
     }
 
-    /**
-     * Добавляет новый тест
-     *
-     * @param Test $test
-     * @param $testData
-     */
-    public function createTest(Test $test, $testData)
-    {
-        $test->setTitle($testData["title"]);
-        $test->setCalculation($testData["calculation"]);
-        $test->setTime($testData["time"]);
-
-        $this->testRepository->save($test);
-    }
-
     public function deleteTest($testId)
     {
         $test = $this->testRepository->findById($testId);

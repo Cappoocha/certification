@@ -2,9 +2,10 @@
 
 namespace Certification\TestBundle\Controller;
 
-
+use Certification\Module\Test\Dto\TestData;
 use Certification\Module\Test\Entity\Test;
 use Certification\Module\Test\Service\TestService;
+use Certification\TestBundle\Form\Handler\TestCreationHandler;
 use Certification\TestBundle\Form\Type\TestType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,23 +19,23 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TestController extends Controller
 {
-    public function listAction()
+    public function listAction(Request $request)
     {
         $testService = $this->getTestService();
         $tests = $testService->getAllTests();
 
-//        $form = $this->createFormBuilder()
-//            ->add('title', 'text')
-//            ->add('time', 'integer')
-//            ->add('calculation', 'integer')
-//            ->getForm();
+		$testForm = $this->createTestForm($this->generateUrl('certification_tests'));
 
-        $form = $this->get('form.factory')->create(new TestType());
+		/** @var TestCreationHandler $testCreationHandler */
+		$testCreationHandler = $this->get('certification_test.form_handler.test_creation');
+		if ($testCreationHandler->handle($testForm, $request)) {
+			return $this->redirect($this->generateUrl('certification_tests'));
+		}
 
         return $this->render(
             "TestBundle:Test:list.html.twig",
             array(
-                "form" => $form->createView(),
+                "testForm" => $testForm->createView(),
                 "tests" => $tests
             ),
             Response::create('', Response::HTTP_OK)
@@ -62,41 +63,6 @@ class TestController extends Controller
     }
 
     /**
-     * Создает тест
-     *
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function addAction(Request $request)
-    {
-//        $form = $this->createFormBuilder()
-//            ->add('title', 'text')
-//            ->add('time', 'integer')
-//            ->add('calculation', 'integer')
-//            ->getForm();
-        $test = new Test();
-        $form = $this->get('form.factory')->create(new TestType(), $test);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $testData = $form->getData();
-            $testService = $this->getTestService();
-            $testService->createTest($test, $testData);
-
-            return $this->redirect($this->generateUrl('certification_tests'));
-        }
-
-        return $this->render(
-            "TestBundle:Test:list.html.twig",
-            array(
-                "form" => $form->createView(),
-                "tests" => null
-            )
-        );
-    }
-
-    /**
      * Удаляет тест
      *
      * @param $testId
@@ -109,6 +75,27 @@ class TestController extends Controller
 
         return $this->redirect($this->generateUrl('certification_tests'));
     }
+
+	/**
+	 * Создает форму для создания/редактирования тестов
+	 *
+	 * @param $actionUrl
+	 * @param Test $test
+	 * @return \Symfony\Component\Form\Form
+	 */
+	private function createTestForm($actionUrl, Test $test = null)
+	{
+		$testData = new TestData();
+		if (! is_null($test)) {
+			$testData->title = $test->getTitle();
+			$testData->time = $test->getTime();
+			$testData->calculation = $test->getCalculation();
+		}
+
+		return $this->createForm(new TestType(), $testData, array(
+			'action' => $actionUrl
+		));
+	}
 
     /**
      * Возвращает сервис для работы с тестами
