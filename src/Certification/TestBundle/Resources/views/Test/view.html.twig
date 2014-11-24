@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Tests{% endblock %}
+
+{% block body %}
+
+    {{ test.title }}
+    {{ test.time }}
+    {{ test.calculation }}
+
+    {% if test.questions %}
+
+    {% else %}
+        No question
+    {% endif %}
+
+    <a href="{{ url('certification_question_add', {'testId' : test.id}) }}">
+        <button type="submit" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+    </a>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 Certification\Module\Test\Entity\Test:
     type: entity
-    repositoryClass: Certification\Module\Repository\DoctrineOrm\TestRepository
+    repositoryClass: Certification\Module\Test\Repository\DoctrineOrm\TestRepository
     table: test
 
     id:
@@ -17,3 +17,9 @@ Certification\Module\Test\Entity\Test:
         time:
             type: string
             length: 100
+
+    OneToMany:
+        question:
+            targetEntity: Certification\Module\Test\Entity\Question
+            mappedBy: test
+            cascade: [ all ]

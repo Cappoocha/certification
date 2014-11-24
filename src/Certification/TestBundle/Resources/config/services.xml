@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="certification.repository.test" class="Certification\Module\Test\Repository\DoctrineOrm\TestRepository"
+                factory-service="doctrine.orm.entity_manager"
+                factory-method="getRepository">
+            <argument>Certification\Module\Test\Entity\Test</argument>
+        </service>
+        <service id="certification.repository.question" class="Certification\Module\Test\Repository\DoctrineOrm\QuestionRepository"
+                factory-service="doctrine.orm.entity_manager"
+                factory-method="getRepository">
+            <argument>Certification\Module\Test\Entity\Question</argument>
+        </service>
+
+        <service id="certification.service.test" class="Certification\Module\Test\Service\TestService">
+            <argument type="service" id="certification.repository.test" />
+        </service>
+        <service id="certification.service.question" class="Certification\Module\Test\Service\QuestionService">
+            <argument type="service" id="certification.repository.question"/>
+            <argument type="service" id="certification.repository.test" />
+        </service>
+
+        <service id="certification.test.form_creator" class="Certification\TestBundle\Form\Creator\FormCreator" abstract="true">
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="router" />
+        </service>
+
+        <service id="certification.test.form_creator.test_creation" class="Certification\TestBundle\Form\Creator\TestCreationFormCreator" parent="certification.test.form_creator" />
+
+        <service id="certification.test.form_handler.test_creation_handler" class="Certification\TestBundle\Form\Handler\TestCreationHandler">
+            <argument type="service" id="certification.service.test" />
+        </service>
+
+    </services>
+
+</container>

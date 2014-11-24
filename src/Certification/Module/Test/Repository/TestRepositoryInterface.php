@@ -5,15 +5,21 @@
  * Time: 17:48
  */
 
-namespace Module\Test\Repository;
+namespace Certification\Module\Test\Repository;
+
+use Certification\Module\Doctrine\Repository\RepositoryInterface;
+use Certification\Module\Test\Entity\Test;
 
 /**
  * Интерфейс репозитория для работы с тестами
  *
  * Interface TestRepositoryInterface
  * @package Module\Test\Repository
+ *
+ * @method Test findAll()
+ * @method Test findById($id)
  */
-interface TestRepositoryInterface
+interface TestRepositoryInterface extends RepositoryInterface
 {
 
 }

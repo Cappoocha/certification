@@ -22,8 +22,8 @@ class TestExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator($this->getConfigPath()));
-        $loader->load('services.yml');
+        $loader = new Loader\XmlFileLoader($container, new FileLocator($this->getConfigPath()));
+        $loader->load('services.xml');
     }
 
 	/**
