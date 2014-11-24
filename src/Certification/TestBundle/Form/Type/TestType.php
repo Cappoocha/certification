@@ -27,17 +27,6 @@ class TestType extends AbstractType
     }
 
     /**
-     * @param array $options
-     * @return array
-     */
-    public function getDefaultOptions(array $options)
-    {
-        return array(
-            'data_class' => 'Certification\Module\Test\Entity\Test'
-        );
-    }
-
-    /**
      * @return string
      */
     public function getName()

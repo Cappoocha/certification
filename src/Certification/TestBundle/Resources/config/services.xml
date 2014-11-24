@@ -28,6 +28,10 @@
         <service id="certification_test.form_handler.test_creation" class="Certification\TestBundle\Form\Handler\TestCreationHandler">
 				<argument type="service" id="certification.repository.test" />
 		</service>
+		<service id="certification_test.form_hundler.question_creation" class="Certification\TestBundle\Form\Handler\QuestionCreationHandler">
+			<argument type="service" id="certification.repository.question" />
+			<argument type="service" id="certification.repository.test" />
+		</service>
 
     </services>
 

@@ -2,14 +2,15 @@
 /**
  * @author Катерина
  * Date: 24.11.14
- * Time: 14:13
+ * Time: 14:52
  */
 
 namespace Certification\TestBundle\Form\Handler;
 
-use Certification\Module\Test\Dto\TestData;
 
-abstract class TestFormHandler extends FormHandler
+use Certification\Module\Test\Dto\QuestionData;
+
+abstract class QuestionFormHandler extends FormHandler
 {
 	/**
 	 * Выполняет обработку данных
@@ -20,15 +21,15 @@ abstract class TestFormHandler extends FormHandler
 	 */
 	protected function process($formData, array $params = array())
 	{
-		$this->processTestForm($formData, $params);
+		$this->processQuestionForm($formData, $params);
 	}
 
 	/**
-	 * Выполняет обработку данных теста
+	 * Выполняет обработку вопроса
 	 *
-	 * @param TestData $testData
+	 * @param QuestionData $questionData
 	 * @param array $params
 	 * @return mixed
 	 */
-	abstract protected function processTestForm(TestData $testData, array $params = array());
+	abstract protected function processQuestionForm(QuestionData $questionData, array $params = array());
 } 

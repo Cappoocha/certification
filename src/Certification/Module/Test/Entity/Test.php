@@ -126,7 +126,5 @@ class Test extends Entity
     public function addQuestion(Question $question)
     {
         $this->questions[] = $question;
-
-        return $this;
     }
 } 

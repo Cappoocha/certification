@@ -28,13 +28,6 @@ class Question extends Entity
     protected $test;
 
     /**
-     * Id теста
-     *
-     * @var integer
-     */
-    private $testId;
-
-    /**
      * Балл за правильный ответ на этот вопрос
      *
      * @var integer
@@ -100,7 +93,5 @@ class Question extends Entity
     public function setTest(Test $test)
     {
         $this->test = $test;
-
-        return $this;
     }
 } 
