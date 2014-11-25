@@ -4,6 +4,7 @@ namespace Certification\TestBundle\Controller;
 
 use Certification\Module\Test\Dto\QuestionData;
 use Certification\Module\Test\Entity\Question;
+use Certification\Module\Test\Service\TestService;
 use Certification\TestBundle\Form\Handler\QuestionCreationHandler;
 use Certification\TestBundle\Form\Type\QuestionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,8 +13,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class QuestionController extends Controller
 {
-    public function addAction($testId, Request $request)
+	/**
+	 * Добавляет вопрос к тесту
+	 *
+	 * @param $testId
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+	 */
+	public function addAction($testId, Request $request)
     {
+		$testService = $this->getTestService();
+		$test = $testService->getTestById($testId);
+
 		$questionForm = $this->createQuestionForm($this->generateUrl('certification_question_add', array('testId' => $testId)));
 
 		/** @var QuestionCreationHandler $questionCreationHandler */
@@ -26,7 +37,8 @@ class QuestionController extends Controller
         return $this->render(
            "TestBundle:Question:add.html.twig",
             array(
-                "questionForm" => $questionForm->createView()
+                "questionForm" => $questionForm->createView(),
+				"test" => $test
             ),
             Response::create('', Response::HTTP_OK)
         );
@@ -51,5 +63,15 @@ class QuestionController extends Controller
 		return $this->createForm(new QuestionType(), $questionData, array(
 			'action' => $actionUrl
 		));
+	}
+
+	/**
+	 * Возвращает сервис для работы с тестами
+	 *
+	 * @return TestService
+	 */
+	private function getTestService()
+	{
+		return $this->get('certification.service.test');
 	}
 } 

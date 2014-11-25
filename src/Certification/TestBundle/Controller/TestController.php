@@ -52,11 +52,13 @@ class TestController extends Controller
     {
         $testService = $this->getTestService();
         $test = $testService->getTestById($testId);
+		$questions = $test->getQuestions();
 
         return $this->render(
             "TestBundle:Test:view.html.twig",
             array(
-                "test" => $test
+                "test" => $test,
+				"questions" => $questions
             ),
             Response::create('', Response::HTTP_OK)
         );

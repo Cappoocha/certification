@@ -30,8 +30,9 @@ class QuestionType extends AbstractType
 //			->add('checkbox_two', 'checkbox', array('label' => 'Is right'))
 			->add('answer_three', 'text')
 //			->add('checkbox_three', 'checkbox', array('label' => 'Is right'))
-			->add('answer_four', 'text');
-//			->add('checkbox_four', 'checkbox', array('label' => 'Is right'));
+			->add('answer_four', 'text')
+//			->add('checkbox_four', 'checkbox', array('label' => 'Is right'))
+			->add('save', 'submit');
 	}
 
 	/**

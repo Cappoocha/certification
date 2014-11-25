@@ -23,7 +23,8 @@ class TestType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('time', 'integer')
-            ->add('calculation', 'integer');
+            ->add('calculation', 'integer')
+			->add('save', 'submit');
     }
 
     /**
