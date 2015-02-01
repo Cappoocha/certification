@@ -25,16 +25,13 @@
             <argument type="service" id="certification.repository.test" />
         </service>
 
-        <service id="certification.test.form_creator" class="Certification\TestBundle\Form\Creator\FormCreator" abstract="true">
-            <argument type="service" id="form.factory" />
-            <argument type="service" id="router" />
-        </service>
-
-        <service id="certification.test.form_creator.test_creation" class="Certification\TestBundle\Form\Creator\TestCreationFormCreator" parent="certification.test.form_creator" />
-
-        <service id="certification.test.form_handler.test_creation_handler" class="Certification\TestBundle\Form\Handler\TestCreationHandler">
-            <argument type="service" id="certification.service.test" />
-        </service>
+        <service id="certification_test.form_handler.test_creation" class="Certification\TestBundle\Form\Handler\TestCreationHandler">
+				<argument type="service" id="certification.repository.test" />
+		</service>
+		<service id="certification_test.form_hundler.question_creation" class="Certification\TestBundle\Form\Handler\QuestionCreationHandler">
+			<argument type="service" id="certification.repository.question" />
+			<argument type="service" id="certification.repository.test" />
+		</service>
 
     </services>
 

@@ -18,8 +18,8 @@ Certification\Module\Test\Entity\Test:
             type: string
             length: 100
 
-    OneToMany:
-        question:
+    oneToMany:
+        questions:
             targetEntity: Certification\Module\Test\Entity\Question
             mappedBy: test
             cascade: [ all ]

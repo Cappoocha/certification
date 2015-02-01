@@ -23,18 +23,8 @@ class TestType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('time', 'integer')
-            ->add('calculation', 'integer');
-    }
-
-    /**
-     * @param array $options
-     * @return array
-     */
-    public function getDefaultOptions(array $options)
-    {
-        return array(
-            'data_class' => 'Certification\Module\Test\Entity\Test'
-        );
+            ->add('calculation', 'integer')
+			->add('save', 'submit');
     }
 
     /**

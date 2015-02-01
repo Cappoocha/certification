@@ -3,21 +3,42 @@
 {% block title %}Tests{% endblock %}
 
 {% block body %}
+	<div class="container">
+		{% block page_header %}
+			<h1>
+				{{ test.title }}
+				<small>
+					Время: {{ test.time }} | Оценка: {{ test.calculation }}
+					<a href="{{ url('certification_question_add', {'testId' : test.id}) }}">
+						<button type="submit" class="btn btn-primary btn-sm">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</a>
+				</small>
+			</h1>
+		{% endblock %}
 
-    {{ test.title }}
-    {{ test.time }}
-    {{ test.calculation }}
-
-    {% if test.questions %}
-
-    {% else %}
-        No question
-    {% endif %}
-
-    <a href="{{ url('certification_question_add', {'testId' : test.id}) }}">
-        <button type="submit" class="btn btn-primary btn-sm">
-            <span class="glyphicon glyphicon-plus"></span>
-        </button>
-    </a>
-
+		{% if questions %}
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>№</th>
+						<th>Вопрос</th>
+						<th>Балл за правильный ответ</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for question in questions %}
+						<tr>
+							<td>{{ loop.index }}</td>
+							<td>{{ question.title }}</td>
+							<td>{{ question.score }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			No question
+		{% endif %}
+	</div>
 {% endblock %}

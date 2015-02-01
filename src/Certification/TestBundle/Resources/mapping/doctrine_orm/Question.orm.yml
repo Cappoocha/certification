@@ -14,11 +14,8 @@ Certification\Module\Test\Entity\Question:
             length: 100
         score:
             type: integer
-        testId:
-            type: integer
-            nullable: true
 
-    ManyToOne:
+    manyToOne:
         test:
             targetEntity: Certification\Module\Test\Entity\Test
             inversedBy: questions
