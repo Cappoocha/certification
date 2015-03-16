@@ -1,0 +1,14 @@
+certification_login:
+    path: /login
+    defaults:
+        _controller: UserBundle:Secured:login
+    requirements:
+        methods:  POST
+
+login_check:
+    pattern: /login_check
+
+logout:
+    path: /logout
+    defaults:
+        _controller: UserBundle:Secured:logout
