@@ -4,6 +4,7 @@ namespace Certification\UserBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -20,10 +21,10 @@ class UserExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator($this->getConfigPath()));
-        $loader->load('services.yml');
+        $loader = new XmlFileLoader($container, new FileLocator($this->getConfigPath()));
+        $loader->load('services.xml');
     }
 
 	/**

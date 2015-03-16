@@ -7,8 +7,9 @@
 
 namespace Certification\Module\User\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class User
+class User implements UserInterface, \Serializable
 {
 	private $id;
 
@@ -39,6 +40,26 @@ class User
 	protected $token;
 
 	/**
+	 * Роли
+	 *
+	 * @var array
+	 */
+	protected $roles;
+
+	/**
+	 * Флаг активации аккаунта
+	 *
+	 * @var boolean
+	 */
+	private $isActive;
+
+	public function __construct()
+	{
+		$this->isActive = true;
+		$this->roles = array();
+	}
+
+	/**
 	 * Устанавливаем email
 	 *
 	 * @param $email
@@ -56,6 +77,16 @@ class User
 	public function getEmail()
 	{
 		return $this->email;
+	}
+
+	/**
+	 * Возвращает username
+	 *
+	 * @return string
+	 */
+	public function getUsername()
+	{
+		return $this->username;
 	}
 
 	/**
@@ -106,5 +137,63 @@ class User
 	public function getPassword()
 	{
 		return $this->password;
+	}
+
+	/**
+	 * @inheritdoc
+	 *
+	 * @return null|string
+	 */
+	public function getSalt()
+	{
+		return null;
+	}
+
+	/**
+	 * @inheritdoc
+	 *
+	 * @return array|\Symfony\Component\Security\Core\Role\Role[]
+	 */
+	public function getRoles()
+	{
+		return ['ROLE_USER'];
+	}
+
+	/**
+	 * Добавляет новую роль
+	 *
+	 * @param $role
+	 */
+	public function addRole($role)
+	{
+		$this->roles[] = $role;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function eraseCredentials()
+	{
+
+	}
+
+	/**
+	 * @return string
+	 */
+	public function serialize()
+	{
+		return serialize(array(
+			$this->id,
+			$this->username,
+			$this->password,
+		));
+	}
+
+	/**
+	 * @param string $serialized
+	 */
+	public function unserialize($serialized)
+	{
+		list ($this->id, $this->username, $this->password,) = unserialize($serialized);
 	}
 } 

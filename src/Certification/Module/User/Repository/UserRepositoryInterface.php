@@ -1,19 +1,21 @@
 <?php
 /**
  * @author Катерина
- * Date: 04.11.14
- * Time: 17:03
+ * Date: 10.02.15
+ * Time: 15:10
  */
 
-namespace Module\User\Repository;
+namespace Certification\Module\User\Repository;
+
+use Certification\Module\Doctrine\Repository\RepositoryInterface;
 
 /**
  * Интерфейс репозитория для работы с пользователями
  *
- * Class UserRepositoryInterface
- * @package Module\User\Repository
+ * Interface UserRepositoryInterface
+ * @package Certification\Module\User\Repository
  */
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends RepositoryInterface
 {
 
 } 

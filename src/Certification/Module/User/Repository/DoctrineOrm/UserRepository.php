@@ -1,23 +1,23 @@
 <?php
 /**
  * @author Катерина
- * Date: 04.11.14
- * Time: 17:04
+ * Date: 10.02.15
+ * Time: 15:05
  */
 
-namespace Module\User\Repository\DoctrineOrm;
+namespace Certification\Module\User\Repository\DoctrineOrm;
 
 
-use Doctrine\ORM\EntityRepository;
-use Module\User\Repository\UserRepositoryInterface;
+use Certification\Module\Doctrine\Repository\DoctrineORM\DoctrineOrmRepository;
+use Certification\Module\User\Repository\UserRepositoryInterface;
 
 /**
- * Репозиторий для работы с пользователями
+ * Класс для работы с пользователями
  *
  * Class UserRepository
- * @package Module\User\Repository\DoctrineOrm
+ * @package Certification\Module\User\Repository\DoctrineOrm
  */
-class UserRepository extends EntityRepository implements UserRepositoryInterface
+class UserRepository extends DoctrineOrmRepository implements UserRepositoryInterface
 {
 
 } 

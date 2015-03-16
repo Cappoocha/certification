@@ -1,6 +1,6 @@
 Certification\Module\User\Entity\User:
     type: entity
-    repositoryClass: Certification\Module\Repository\DoctrineOrm\UserRepository
+    repositoryClass: Certification\Module\User\Repository\DoctrineOrm\UserRepository
     table: user
 
     id:
@@ -25,3 +25,7 @@ Certification\Module\User\Entity\User:
             type: string
             length: 255
             nullable: true
+        isActive:
+            type: boolean
+        roles:
+            type: simple_array
