@@ -12,3 +12,8 @@ logout:
     path: /logout
     defaults:
         _controller: UserBundle:Secured:logout
+
+certification_register:
+    path: /register
+    defaults:
+        _controller: UserBundle:Secured:registerUser

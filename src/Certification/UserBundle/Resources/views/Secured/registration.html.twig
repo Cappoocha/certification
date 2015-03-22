@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{{ form_start(registerForm, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'} }) }}
+			<h2>Please fill the registration form</h2>
+			<div class="form-group">
+				<label for="registration_email" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-10">
+					{{ form_widget(registerForm.email, {'attr': {'class':'form-control', 'placeholder':'Email'} }) }}
+					{{ form_errors(registerForm.email) }}
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="registration_username" class="col-sm-2 control-label">Username</label>
+				<div class="col-sm-10">
+					{{ form_widget(registerForm.username, {'attr': {'class':'form-control', 'placeholder':'Username'} }) }}
+					{{ form_errors(registerForm.username) }}
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="registration_password_first" class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-10">
+					{{ form_widget(registerForm.password.first, {'attr': {'class':'form-control', 'placeholder':'Password'} }) }}
+					{{ form_errors(registerForm.password) }}
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="registration_password_second" class="col-sm-2 control-label">Repeat password</label>
+				<div class="col-sm-10">
+					{{ form_widget(registerForm.password.second, {'attr': {'class':'form-control', 'placeholder':'Repeat password'} }) }}
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					{{ form_widget(registerForm.submit, { 'attr': {'class': 'btn btn-default'}, 'label': 'Register' }) }}
+				</div>
+			</div>
+		{{ form_end(registerForm) }}
+	</div>
+
+{% endblock %}
