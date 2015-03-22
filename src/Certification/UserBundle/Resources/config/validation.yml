@@ -1,0 +1,12 @@
+Certification\Module\User\Dto\UserRegisterData:
+#todo Create UniqueEntity check
+    properties:
+        username:
+            - NotBlank: ~
+        password:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: true
