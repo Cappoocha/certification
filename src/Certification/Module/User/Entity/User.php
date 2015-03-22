@@ -7,11 +7,12 @@
 
 namespace Certification\Module\User\Entity;
 
+use Certification\Module\Doctrine\Entity\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface, \Serializable
+class User extends Entity implements UserInterface, \Serializable
 {
-	private $id;
+	protected $id;
 
 	/**
 	 * Email пользователя
@@ -55,8 +56,8 @@ class User implements UserInterface, \Serializable
 
 	public function __construct()
 	{
-		$this->isActive = true;
-		$this->roles = array();
+		$this->isActive = false;
+		$this->roles = ['ROLE_USER'];
 	}
 
 	/**
@@ -167,6 +168,26 @@ class User implements UserInterface, \Serializable
 	public function addRole($role)
 	{
 		$this->roles[] = $role;
+	}
+
+	/**
+	 * Устанавливает флаг активности пользователя
+	 *
+	 * @param $isActive
+	 */
+	public function setIsActive($isActive)
+	{
+		$this->isActive = $isActive;
+	}
+
+	/**
+	 * Возвращает флаг активности пользователя
+	 *
+	 * @return bool
+	 */
+	public function getIsActive()
+	{
+		return $this->isActive;
 	}
 
 	/**
