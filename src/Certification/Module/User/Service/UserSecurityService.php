@@ -40,6 +40,12 @@ class UserSecurityService
 		$this->encoderFactory = $encoderFactory;
 	}
 
+	/**
+	 * Создает нового пользователя
+	 *
+	 * @param UserRegisterData $userRegisterData
+	 * @return User
+	 */
 	public function registerUser(UserRegisterData $userRegisterData)
 	{
 		$user = new User();
@@ -48,7 +54,9 @@ class UserSecurityService
 		$user->setEmail($userRegisterData->email);
 		$user->setToken('');
 
-		return $this->userRepository->save($user);
+		$this->userRepository->save($user);
+
+		return $user;
 	}
 
 	/**
