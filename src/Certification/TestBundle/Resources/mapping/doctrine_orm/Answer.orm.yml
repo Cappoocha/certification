@@ -1,0 +1,25 @@
+Certification\Module\Test\Entity\Answer:
+    type: entity
+    repositoryClass: Certification\Module\Test\Repository\DoctrineOrm\AnswerRepository
+    table: answer
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        answer:
+            type: string
+            length: 255
+        isRight:
+            type: boolean
+
+    manyToOne:
+        question:
+            targetEntity: Certification\Module\Test\Entity\Question
+            inversedBy: answers
+            cascade: [ all ]
+            joinColumn:
+                name: questionId
+                referencedColumnName: id

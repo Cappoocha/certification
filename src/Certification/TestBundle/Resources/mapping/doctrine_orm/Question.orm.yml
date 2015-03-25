@@ -23,3 +23,9 @@ Certification\Module\Test\Entity\Question:
             joinColumn:
                 name: testId
                 referencedColumnName: id
+
+    oneToMany:
+        answers:
+            targetEntity: Certification\Module\Test\Entity\Answer
+            mappedBy: question
+            cascade: [ all ]
