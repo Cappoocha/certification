@@ -18,7 +18,11 @@ class QuestionData
 	public $title;
 	public $score;
 	public $answer_one;
+	public $checkbox_one;
 	public $answer_two;
+	public $checkbox_two;
 	public $answer_three;
+	public $checkbox_three;
 	public $answer_four;
+	public $checkbox_four;
 } 

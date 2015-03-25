@@ -25,13 +25,13 @@ class QuestionType extends AbstractType
 			->add('title', 'text')
 			->add('score', 'text')
 			->add('answer_one', 'text')
-//			->add('checkbox_one', 'checkbox', array('label' => 'Is right'))
+			->add('checkbox_one', 'checkbox', array('label' => 'Is right'))
 			->add('answer_two', 'text')
-//			->add('checkbox_two', 'checkbox', array('label' => 'Is right'))
+			->add('checkbox_two', 'checkbox', array('label' => 'Is right'))
 			->add('answer_three', 'text')
-//			->add('checkbox_three', 'checkbox', array('label' => 'Is right'))
+			->add('checkbox_three', 'checkbox', array('label' => 'Is right'))
 			->add('answer_four', 'text')
-//			->add('checkbox_four', 'checkbox', array('label' => 'Is right'))
+			->add('checkbox_four', 'checkbox', array('label' => 'Is right'))
 			->add('save', 'submit');
 	}
 
