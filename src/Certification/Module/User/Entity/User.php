@@ -157,17 +157,17 @@ class User extends Entity implements UserInterface, \Serializable
 	 */
 	public function getRoles()
 	{
-		return ['ROLE_USER'];
+		return $this->roles;
 	}
 
 	/**
 	 * Добавляет новую роль
 	 *
-	 * @param $role
+	 * @param array $role
 	 */
-	public function addRole($role)
+	public function setRole(array $role = [])
 	{
-		$this->roles[] = $role;
+		$this->roles = $role;
 	}
 
 	/**
