@@ -10,3 +10,18 @@ Certification\Module\Test\Entity\Test:
         calculation:
             - NotBlank: ~
             - Type: integer
+
+Certification\Module\Test\Dto\QuestionData:
+    properties:
+        title:
+            - NotBlank: ~
+        score:
+            - NotBlank: ~
+        answer_one:
+            - NotBlank: ~
+        answer_two:
+            - NotBlank: ~
+        answer_three:
+            - NotBlank: ~
+        answer_four:
+            - NotBlank: ~
