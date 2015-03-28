@@ -34,6 +34,13 @@
 							<td>{{ question.title }}</td>
 							<td>{{ question.score }}</td>
 						</tr>
+						{% for answer in question.answers %}
+							<tr>
+								<td></td>
+								<td>{{ answer.answer }}</td>
+								<td>Edit</td>
+							</tr>
+						{% endfor %}
 					{% endfor %}
 				</tbody>
 			</table>
