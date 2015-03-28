@@ -1,4 +1,4 @@
-certification_login:
+login:
     path: /login
     defaults:
         _controller: UserBundle:Secured:login
@@ -13,7 +13,7 @@ logout:
     defaults:
         _controller: UserBundle:Secured:logout
 
-certification_register:
+register:
     path: /register
     defaults:
         _controller: UserBundle:Secured:registerUser

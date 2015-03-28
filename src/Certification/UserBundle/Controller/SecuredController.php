@@ -56,13 +56,13 @@ class SecuredController extends Controller
 	{
 		$userSecurityService = $this->getUserSecurityService();
 
-		$registrationForm = $this->createRegistrationForm($this->generateUrl('certification_register'));
+		$registrationForm = $this->createRegistrationForm($this->generateUrl('register'));
 		$registrationForm->handleRequest($request);
 
 		if ($registrationForm->isValid()) {
 			$userSecurityService->registerUser($registrationForm->getData());
 
-			return $this->redirect($this->generateUrl('certification_login'));
+			return $this->redirect($this->generateUrl('login'));
 		}
 
 		return $this->render(
