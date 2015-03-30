@@ -4,7 +4,6 @@ namespace Certification\Module\Test\Service;
 
 use Certification\Module\Test\Entity\Test;
 use Certification\Module\Test\Repository\TestRepositoryInterface;
-use Doctrine\ORM\EntityNotFoundException;
 
 /**
  * Сервис для работы с тестами
@@ -37,29 +36,35 @@ class TestService
         return $this->testRepository->findAll();
     }
 
-    /**
-     * Находит тест по id
-     *
-     * @param $testId
-     * @return Test
-     * @throws \Doctrine\ORM\EntityNotFoundException
-     */
-    public function getTestById($testId)
+	/**
+	 * Находит тест по id
+	 *
+	 * @param $testId
+	 * @return Test
+	 * @throws \Exception
+	 */
+	public function getTestById($testId)
     {
         $test = $this->testRepository->findById($testId);
         if (empty ($test)) {
-            throw new EntityNotFoundException('Test not found');
+            throw new \Exception('Test not found');
         }
 
         return $test;
     }
 
-    public function deleteTest($testId)
+	/**
+	 * Удаляет тест
+	 *
+	 * @param $testId
+	 * @throws \Exception
+	 */
+	public function deleteTest($testId)
     {
         $test = $this->testRepository->findById($testId);
 
         if (empty ($test)) {
-            throw new EntityNotFoundException('Test not fount');
+            throw new \Exception('Test not fount');
         }
 
         $this->testRepository->delete($test);

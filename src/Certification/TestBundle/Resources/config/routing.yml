@@ -16,15 +16,13 @@ certification_test_view:
     path: /test/{testId}
     defaults:
         _controller: TestBundle:Test:view
-    requirements:
-        methods: GET
 
 certification_test_delete:
-    path: /test/{testId}
+    path: /test/{testId}/delete
     defaults:
         _controller: TestBundle:Test:delete
     requirements:
-        methods: DELETE
+        methods: POST
 
 certification_question_add:
     path: /{testId}/question/add

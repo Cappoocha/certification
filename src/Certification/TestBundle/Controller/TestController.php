@@ -73,7 +73,11 @@ class TestController extends Controller
     public function deleteAction($testId)
     {
         $testService = $this->getTestService();
-        $testService->deleteTest($testId);
+		try {
+			$testService->deleteTest($testId);
+		} catch (\Exception $exception) {
+			return $this->render("::error.html.twig", ["errorMessage" => $exception->getMessage()]);
+		}
 
         return $this->redirect($this->generateUrl('certification_tests'));
     }
