@@ -5,10 +5,8 @@ namespace Certification\TestBundle\Controller;
 use Certification\Module\Test\Dto\TestData;
 use Certification\Module\Test\Entity\Test;
 use Certification\Module\Test\Service\TestService;
-use Certification\TestBundle\Form\Handler\TestCreationHandler;
 use Certification\TestBundle\Form\Type\TestType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -19,25 +17,28 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TestController extends Controller
 {
-    public function listAction(Request $request)
+	/**
+	 * Выводит тесты
+	 *
+	 * @return Response
+	 */
+	public function listAction()
     {
         $testService = $this->getTestService();
         $tests = $testService->getAllTests();
 
-		$testForm = $this->createTestForm($this->generateUrl('certification_tests'));
-
-		/** @var TestCreationHandler $testCreationHandler */
-		$testCreationHandler = $this->get('certification_test.form_handler.test_creation');
-		if ($testCreationHandler->handle($testForm, $request)) {
-			return $this->redirect($this->generateUrl('certification_tests'));
+		$securityContext = $this->container->get('security.context');
+		if ($securityContext->isGranted('ROLE_ADMIN')) {
+			return $this->render(
+				"UserBundle:Admin:testList.html.twig",
+				["tests" => $tests],
+				Response::create('', Response::HTTP_OK)
+			);
 		}
 
         return $this->render(
             "TestBundle:Test:list.html.twig",
-            array(
-                "testForm" => $testForm->createView(),
-                "tests" => $tests
-            ),
+            ["tests" => $tests],
             Response::create('', Response::HTTP_OK)
         );
     }

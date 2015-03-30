@@ -1,0 +1,58 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Tests{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{% block page_header %}
+			<h1>Tests</h1>
+		{% endblock %}
+
+		<a href="{{ path('admin_control_test_add') }}">
+			<button type="button" class="btn btn-primary">Добавить тест</button>
+		</a>
+
+		{% if tests %}
+			<table class="table table-condensed">
+				<thead>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Time</th>
+					<th></th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for test in tests %}
+					<tr>
+						<td>{{ test.id }}</td>
+						<td>
+							<a href="{{ path('certification_test_view', {'testId': test.id}) }}">
+								{{ test.title }}
+							</a>
+						</td>
+						<td>{{ test.time }}</td>
+						<td colspan="2">
+
+							<a href="">
+								<button type="submit" class="btn btn-primary btn-sm">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</button>
+							</a>
+
+							<a href="{{ path('admin_control_test_delete', {'testId': test.id}) }}">
+								<button type="submit" class="btn btn-danger btn-sm">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button>
+							</a>
+
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			Nothing to show
+		{% endif %}
+	</div>
+{% endblock %}

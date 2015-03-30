@@ -8,32 +8,6 @@
 			<h1>Tests</h1>
 		{% endblock %}
 
-		{{ form_start(testForm, { 'attr': {'class': 'form-inline'} }) }}
-			{{ form_errors(testForm) }}
-			<div class="form-group">
-				<label for="title" class="sr-only">Title</label>
-				{{ form_errors(testForm.title) }}
-				{{ form_widget(testForm.title, { 'attr': {'class': 'form-control', 'placeholder' : 'Title'} }) }}
-			</div>
-
-			<div class="form-group">
-				<label for="time" class="sr-only">Time</label>
-				{{ form_errors(testForm.time) }}
-				{{ form_widget(testForm.time, { 'attr': {'class': 'form-control', 'placeholder' : 'Time'} }) }}
-			</div>
-
-			<div class="form-group">
-				<label for="calculation" class="sr-only">Calculation</label>
-				{{ form_errors(testForm.calculation) }}
-				{{ form_widget(testForm.calculation, { 'attr': {'class': 'form-control', 'placeholder' : 'Calculation'} }) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_widget(testForm.save, { 'attr': {'class': 'btn btn-primary'}, 'label': 'Добавить' }) }}
-			</div>
-
-		{{ form_end(testForm) }}
-
 		{% if tests %}
 			<table class="table table-condensed">
 				<thead>
@@ -41,7 +15,6 @@
 					<th>Id</th>
 					<th>Title</th>
 					<th>Time</th>
-					<th></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -54,21 +27,6 @@
 								</a>
 							</td>
 							<td>{{ test.time }}</td>
-							<td colspan="2">
-
-								<a href="">
-									<button type="submit" class="btn btn-primary btn-sm">
-										<span class="glyphicon glyphicon-pencil"></span>
-									</button>
-								</a>
-
-								<a href="{{ path('certification_test_delete', {'testId': test.id}) }}">
-									<button type="submit" class="btn btn-danger btn-sm">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</a>
-
-							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
