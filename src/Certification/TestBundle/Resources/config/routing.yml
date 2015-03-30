@@ -5,28 +5,7 @@ certification_tests:
     requirements:
         methods:  GET
 
-certification_test_add:
-    path: /test/add
-    defaults:
-        _controller: TestBundle:Test:add
-    requirements:
-        methods: POST
-
 certification_test_view:
     path: /test/{testId}
     defaults:
         _controller: TestBundle:Test:view
-
-certification_test_delete:
-    path: /test/{testId}/delete
-    defaults:
-        _controller: TestBundle:Test:delete
-    requirements:
-        methods: POST
-
-certification_question_add:
-    path: /{testId}/question/add
-    defaults:
-        _controller: TestBundle:Question:add
-    requirements:
-        method: POST

@@ -1,19 +1,5 @@
-login:
-    path: /login
-    defaults:
-        _controller: UserBundle:Secured:login
-    requirements:
-        methods:  POST
+secured:
+    resource: "@UserBundle/Resources/config/routing/secured.yml"
 
-login_check:
-    pattern: /login_check
-
-logout:
-    path: /logout
-    defaults:
-        _controller: UserBundle:Secured:logout
-
-register:
-    path: /register
-    defaults:
-        _controller: UserBundle:Secured:registerUser
+admin:
+    resource: "@UserBundle/Resources/config/routing/admin.yml"

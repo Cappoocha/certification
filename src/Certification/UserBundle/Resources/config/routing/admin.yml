@@ -1,0 +1,27 @@
+admin_control_tests:
+    path: /admin/tests
+    defaults:
+        _controller: TestBundle:Test:list
+    requirements:
+        methods:  GET
+
+admin_control_test_add:
+    path: /admin/test/add
+    defaults:
+        _controller: TestBundle:Test:add
+    requirements:
+        methods: POST
+
+admin_control_test_delete:
+    path: /admin/test/{testId}/delete
+    defaults:
+        _controller: TestBundle:Test:delete
+    requirements:
+        methods: POST
+
+admin_control_question_add:
+    path: /admin/{testId}/question/add
+    defaults:
+        _controller: TestBundle:Question:add
+    requirements:
+        method: POST
