@@ -10,7 +10,6 @@ namespace Certification\UserBundle\Controller;
 use Certification\Module\User\Dto\UserRegisterData;
 use Certification\Module\User\Entity\User;
 use Certification\Module\User\Service\UserSecurityService;
-use Certification\UserBundle\Form\Type\LoginType;
 use Certification\UserBundle\Form\Type\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,20 +21,6 @@ use Symfony\Component\Security\Core\SecurityContext;
  */
 class SecuredController extends Controller
 {
-	public function showLoginFormAction(Request $request)
-	{
-		$loginForm = $this->createForm(
-			new LoginType($request),
-			null,
-			array('action' => $this->generateUrl('certification.form_login_check'))
-		);
-
-		return $this->render('UserBundle:Secured:loginForm.html.twig', array(
-			'loginForm' => $loginForm->createView(),
-			'targetPath' => '',
-		));
-	}
-
 	public function loginAction(Request $request)
 	{
 		$session = $request->getSession();
@@ -46,7 +31,6 @@ class SecuredController extends Controller
 		return $this->render(
 			'UserBundle:Secured:login.html.twig',
 			array(
-				// last username entered by the user
 				'last_username' => $session->get(SecurityContext::LAST_USERNAME),
 				'error' => $error)
 		);

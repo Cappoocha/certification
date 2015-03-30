@@ -12,10 +12,6 @@
 			<argument>Certification\Module\User\Entity\User</argument>
 		</service>
 
-		<service id="certification_user.form_handler.login_check" class="Certification\UserBundle\Form\Handler\LoginHandler">
-			<argument type="service" id="certification.repository.user" />
-		</service>
-
 		<service id="certification_user.service.security" class="Certification\Module\User\Service\UserSecurityService">
 			<argument type="service" id="certification.repository.user" />
 			<argument type="service" id="security.encoder_factory" />
