@@ -11,15 +11,17 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-		{% block logout_button %}
+		{% block nav_bar %}
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
-					<div class="navbar-header">
-						{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-							<div>
-								<a class="navbar-brand" href="{{ path('logout') }}">Logout</a>
-							</div>
-						{% endif %}
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="{{ path('certification_tests') }}">Главная</a></li>
+							<li><a href="{{ path('admin_control_tests') }}">Управление тестами</a></li>
+							{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+								<li><a class="navbar-brand" href="{{ path('logout') }}">Logout</a></li>
+							{% endif %}
+						</ul>
 					</div>
 				</div>
 			</nav>
