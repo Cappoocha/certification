@@ -17,6 +17,13 @@ admin_control_test_add:
     requirements:
         methods: POST
 
+admin_control_test_edit:
+    path: /admin/test/{testId}/edit
+    defaults:
+        _controller: TestBundle:Test:edit
+    requirements:
+        methods: POST
+
 admin_control_test_delete:
     path: /admin/test/{testId}/delete
     defaults:

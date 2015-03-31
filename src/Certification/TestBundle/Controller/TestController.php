@@ -6,6 +6,7 @@ use Certification\Module\Test\Dto\TestData;
 use Certification\Module\Test\Entity\Test;
 use Certification\Module\Test\Service\TestService;
 use Certification\TestBundle\Form\Handler\TestCreationHandler;
+use Certification\TestBundle\Form\Handler\TestEditHandler;
 use Certification\TestBundle\Form\Type\TestType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,6 +89,31 @@ class TestController extends Controller
 			["testForm" => $testForm->createView()],
 			Response::create('', Response::HTTP_OK)
 		);
+	}
+
+	public function editAction($testId, Request $request)
+	{
+		$testService = $this->getTestService();
+		try {
+			$test = $testService->getTestById($testId);
+			$testForm = $this->createTestForm($this->generateUrl('admin_control_test_edit', ["testId" => $testId]), $test);
+
+			/** @var TestEditHandler $testEditHandler */
+			$testEditHandler = $this->get('certification_test.form_handler.test_edit');
+
+			if ($testEditHandler->handle($testForm, $request, ['testId' => $testId])) {
+				return $this->redirect($this->generateUrl('certification_tests'));
+			}
+
+			return $this->render(
+				"TestBundle:Test:add.html.twig",
+				["testForm" => $testForm->createView()],
+				Response::create('', Response::HTTP_OK)
+			);
+
+		} catch (\Exception $exception) {
+			return $this->render("::error.html.twig", ["errorMessage" => $exception->getMessage()]);
+		}
 	}
 
     /**
