@@ -25,3 +25,12 @@ Certification\Module\Test\Dto\QuestionData:
             - NotBlank: ~
         answer_four:
             - NotBlank: ~
+
+Certification\Module\Test\Dto\TestData:
+    properties:
+        title:
+            - NotBlank: ~
+        time:
+            - NotBlank: ~
+        calculation:
+            - NotBlank: ~
