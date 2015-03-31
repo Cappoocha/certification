@@ -29,6 +29,7 @@
 
 		<div class="form-group">
 			{{ form_widget(testForm.save, { 'attr': {'class': 'btn btn-primary'}, 'label': 'Добавить' }) }}
+			<a class="btn btn-danger" href="{{ path('admin_control_tests') }}" role="button">Отменить</a>
 		</div>
 
 		{{ form_end(testForm) }}
