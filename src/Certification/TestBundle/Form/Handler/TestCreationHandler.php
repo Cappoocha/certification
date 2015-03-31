@@ -26,6 +26,7 @@ class TestCreationHandler extends TestFormHandler
 
 	/**
 	 * Обработка данных и создание теста
+	 *
 	 * @param TestData $testData
 	 * @param array $params
 	 * @return mixed|void

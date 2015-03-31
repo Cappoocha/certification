@@ -5,8 +5,10 @@ namespace Certification\TestBundle\Controller;
 use Certification\Module\Test\Dto\TestData;
 use Certification\Module\Test\Entity\Test;
 use Certification\Module\Test\Service\TestService;
+use Certification\TestBundle\Form\Handler\TestCreationHandler;
 use Certification\TestBundle\Form\Type\TestType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -64,6 +66,29 @@ class TestController extends Controller
             Response::create('', Response::HTTP_OK)
         );
     }
+
+	/**
+	 * Создает тест
+	 *
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+	 */
+	public function addAction(Request $request)
+	{
+		$testForm = $this->createTestForm($this->generateUrl('admin_control_test_add'));
+
+		/** @var TestCreationHandler $testCreationHandler */
+		$testCreationHandler = $this->get('certification_test.form_handler.test_creation');
+		if ($testCreationHandler->handle($testForm, $request)) {
+			return $this->redirect($this->generateUrl('certification_tests'));
+		}
+
+		return $this->render(
+			"TestBundle:Test:add.html.twig",
+			["testForm" => $testForm->createView()],
+			Response::create('', Response::HTTP_OK)
+		);
+	}
 
     /**
      * Удаляет тест
