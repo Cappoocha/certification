@@ -15,18 +15,18 @@
 					<th>Id</th>
 					<th>Title</th>
 					<th>Time</th>
+					<th></th>
 				</tr>
 				</thead>
 				<tbody>
 					{% for test in tests %}
 						<tr>
 							<td>{{ test.id }}</td>
-							<td>
-								<a href="{{ path('certification_test_view', {'testId': test.id}) }}">
-									{{ test.title }}
-								</a>
-							</td>
+							<td>{{ test.title }}</td>
 							<td>{{ test.time }}</td>
+							<td>
+								<a class="btn btn-primary" href="#" role="button">Начать тест</a>
+							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
