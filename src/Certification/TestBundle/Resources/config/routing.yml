@@ -4,8 +4,3 @@ certification_tests:
         _controller: TestBundle:Test:list
     requirements:
         methods:  GET
-
-certification_test_view:
-    path: /test/{testId}
-    defaults:
-        _controller: TestBundle:Test:view

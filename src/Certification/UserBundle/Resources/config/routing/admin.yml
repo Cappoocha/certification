@@ -5,6 +5,11 @@ admin_control_tests:
     requirements:
         methods:  GET
 
+admin_control_test_view:
+    path: /admin/test/{testId}
+    defaults:
+        _controller: TestBundle:Test:view
+
 admin_control_test_add:
     path: /admin/test/add
     defaults:
@@ -25,3 +30,4 @@ admin_control_question_add:
         _controller: TestBundle:Question:add
     requirements:
         method: POST
+

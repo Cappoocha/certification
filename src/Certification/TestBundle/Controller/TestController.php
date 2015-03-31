@@ -58,7 +58,7 @@ class TestController extends Controller
 		$questions = $test->getQuestions();
 
         return $this->render(
-            "TestBundle:Test:view.html.twig",
+            "UserBundle:Admin:testView.html.twig",
             array(
                 "test" => $test,
 				"questions" => $questions

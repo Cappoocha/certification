@@ -9,7 +9,7 @@
 				{{ test.title }}
 				<small>
 					Время: {{ test.time }} | Оценка: {{ test.calculation }}
-					<a href="{{ url('certification_question_add', {'testId' : test.id}) }}">
+					<a href="{{ url('admin_control_question_add', {'testId' : test.id}) }}">
 						<button type="submit" class="btn btn-primary btn-sm">
 							<span class="glyphicon glyphicon-plus"></span>
 						</button>
@@ -21,27 +21,27 @@
 		{% if questions %}
 			<table class="table table-condensed">
 				<thead>
-					<tr>
-						<th>№</th>
-						<th>Вопрос</th>
-						<th>Балл за правильный ответ</th>
-					</tr>
+				<tr>
+					<th>№</th>
+					<th>Вопрос</th>
+					<th>Балл за правильный ответ</th>
+				</tr>
 				</thead>
 				<tbody>
-					{% for question in questions %}
+				{% for question in questions %}
+					<tr>
+						<td>{{ loop.index }}</td>
+						<td>{{ question.title }}</td>
+						<td>{{ question.score }}</td>
+					</tr>
+					{% for answer in question.answers %}
 						<tr>
-							<td>{{ loop.index }}</td>
-							<td>{{ question.title }}</td>
-							<td>{{ question.score }}</td>
+							<td></td>
+							<td>{{ answer.answer }}</td>
+							<td>Edit</td>
 						</tr>
-						{% for answer in question.answers %}
-							<tr>
-								<td></td>
-								<td>{{ answer.answer }}</td>
-								<td>Edit</td>
-							</tr>
-						{% endfor %}
 					{% endfor %}
+				{% endfor %}
 				</tbody>
 			</table>
 		{% else %}
